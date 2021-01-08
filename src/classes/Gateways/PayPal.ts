@@ -1,5 +1,3 @@
-declare const PAYPAL_MODE: string
-
 declare global {
   interface Window { paypal: any; }
 }
@@ -61,7 +59,7 @@ class PayPal {
 
   locale: PayPalButtonLocale = 'it_IT'
 
-  paypalMode = PAYPAL_MODE
+  paypalMode: PayPalMode = 'sandobox'
 }
 
 interface PayPalButtonStyle {
@@ -74,24 +72,26 @@ interface PayPalButtonStyle {
 }
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/#color */
-type PayPalButtonColor = 'gold' | 'blue' | 'silver' | 'white' | 'black'
+export type PayPalButtonColor = 'gold' | 'blue' | 'silver' | 'white' | 'black'
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/#shape */
-type PayPalButtonShape = 'pill' | 'rect'
+export type PayPalButtonShape = 'pill' | 'rect'
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/#size */
-type PayPalButtonSize = 'small' | 'medium' | 'large' | 'responsive'
+export type PayPalButtonSize = 'small' | 'medium' | 'large' | 'responsive'
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/#label */
-type PayPalButtonLabel = 'checkout' | 'credit' | 'pay' | 'buynow' | 'paypal' | 'installment'
+export type PayPalButtonLabel = 'checkout' | 'credit' | 'pay' | 'buynow' | 'paypal' | 'installment'
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/#layout */
-type PayPalButtonLayout = 'horizontal' | 'vertical'
+export type PayPalButtonLayout = 'horizontal' | 'vertical'
 
 /** @see https://developer.paypal.com/docs/archive/checkout/how-to/customize-button/# */
-type PayPalButtonFundingIcons = boolean
+export type PayPalButtonFundingIcons = boolean
 
 /** @see https://developer.paypal.com/docs/archive/checkout/reference/supported-locales */
-type PayPalButtonLocale = 'it_IT' | 'en_IT' | 'en_US'
+export type PayPalButtonLocale = 'it_IT' | 'en_IT' | 'en_US'
+
+export type PayPalMode = 'sandobox' | 'production'
 
 export default PayPal
