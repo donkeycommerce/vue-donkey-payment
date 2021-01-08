@@ -36,5 +36,5 @@ export declare type PayPalButtonLayout = 'horizontal' | 'vertical';
 export declare type PayPalButtonFundingIcons = boolean;
 /** @see https://developer.paypal.com/docs/archive/checkout/reference/supported-locales */
 export declare type PayPalButtonLocale = 'it_IT' | 'en_IT' | 'en_US';
-export declare type PayPalMode = 'sandobox' | 'production';
+export declare type PayPalMode = 'sandbox' | 'production';
 export default PayPal;
