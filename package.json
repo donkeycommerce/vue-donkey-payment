@@ -1,0 +1,30 @@
+{
+  "name": "vue-donkey-payment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donkeycommerce/vue-donkey-payment.git"
+  },
+  "author": "Daniele Tulone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donkeycommerce/vue-donkey-payment/issues"
+  },
+  "homepage": "https://github.com/donkeycommerce/vue-donkey-payment#readme",
+  "dependencies": {
+    "donkey-axios-wrapper": "github:donkeycommerce/axios-wrapper#master",
+    "donkey-helpers-js": "github:donkeycommerce/donkey-helpers-js#master"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
+  "files": [
+    "lib",
+    "src"
+  ]
+}
