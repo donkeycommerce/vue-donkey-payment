@@ -25,7 +25,7 @@ export default {
     paypal.load()
   },
   props: {
-    paypalMode: PayPalMode,
+    paypalMode: String,
     serviceType: String,
     serviceId: String|Number
   }
