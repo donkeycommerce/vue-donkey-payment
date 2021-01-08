@@ -13,9 +13,9 @@ export default {
       type: this.serviceType,
       id: this.serviceId
     }, (res) => {
-      this.$emit('payment_success', res)
+      this.$emit('success', res)
     }, (err) => {
-      this.$emit('payment_error', err)
+      this.$emit('error', err)
     })
 
     const paypal = new PayPal(payment)
