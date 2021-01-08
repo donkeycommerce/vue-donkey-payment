@@ -59,7 +59,7 @@ class PayPal {
 
   locale: PayPalButtonLocale = 'it_IT'
 
-  paypalMode: PayPalMode = 'sandobox'
+  paypalMode: PayPalMode = 'sandbox'
 }
 
 interface PayPalButtonStyle {
@@ -92,6 +92,6 @@ export type PayPalButtonFundingIcons = boolean
 /** @see https://developer.paypal.com/docs/archive/checkout/reference/supported-locales */
 export type PayPalButtonLocale = 'it_IT' | 'en_IT' | 'en_US'
 
-export type PayPalMode = 'sandobox' | 'production'
+export type PayPalMode = 'sandbox' | 'production'
 
 export default PayPal
