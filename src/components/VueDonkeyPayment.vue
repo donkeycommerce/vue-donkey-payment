@@ -8,10 +8,15 @@ import PayPal from '../classes/Gateways/PayPal'
 
 export default {
   name: 'DonkeyPayment',
+  data() {
+    return {
+      payment: null
+    }
+  },
   mounted() {
     const imsId = this.imsId || null
 
-    const payment = new Payment({
+    this.payment = new Payment({
       type: this.serviceType,
       id: this.serviceId
     }, (res) => {
@@ -20,7 +25,7 @@ export default {
       this.$emit('error', err)
     }, this.imsId)
 
-    const paypal = new PayPal(payment)
+    const paypal = new PayPal(this.payment)
 
     paypal.paypalMode = this.paypalMode
 
@@ -31,6 +36,17 @@ export default {
     serviceType: String,
     serviceId: String|Number,
     imsId: String
+  },
+  watch: {
+    serviceType: (val) => {
+      this.payment.purchasable.type = val
+    },
+    serviceId: (val) => {
+      this.payment.purchasable.id = val
+    },
+    imsId: (val) => {
+      this.payment.imsId = val
+    }
   }
 }
 </script>
