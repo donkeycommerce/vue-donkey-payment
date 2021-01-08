@@ -10,6 +10,18 @@ type PaymentPrepareResponse = {
   gateway: unknown
 }
 
+type PaymentPreparePayload = {
+  gateway: PaymentGateway,
+  purchasable: Purchasable,
+  ims_id?: string
+}
+
+type PaymentExecutePayload = {
+  gateway: PaymentGateway,
+  payment_id: string,
+  ims_id?: string
+}
+
 class Payment {
   gateway: PaymentGateway
 
@@ -23,33 +35,51 @@ class Payment {
 
   paymentId: string = ''
 
+  imsId: string|null = null
+
   constructor (
     purchasable: Purchasable, 
     onSuccess: CallbackAxiosResponse,
     onFailure: CallbackError,
+    imsId: string|null = null,
     gateway: PaymentGateway = 'paypal',
   ) {
     this.purchasable = purchasable
-    this.gateway = gateway
-
     this.onSuccess = onSuccess
     this.onFailure = onFailure
+    this.imsId = imsId
+    this.gateway = gateway
   }
 
   prepare (): AxiosPromise<PaymentPrepareResponse> {
-    return (Http.post('v1/payments', {
+    let payload: PaymentPreparePayload = {
       gateway: this.gateway,
       purchasable: this.purchasable,
-    }) as AxiosPromise<PaymentPrepareResponse>).then(res => {
-      this.paymentId = res.data.payment_id
-      return res
-    })
+    }
+
+    if (this.imsId) {
+      payload.ims_id = this.imsId
+    }
+
+    return (Http.post('v1/payments', payload) as AxiosPromise<PaymentPrepareResponse>)
+      .then(res => {
+        this.paymentId = res.data.payment_id
+        return res
+      })
   }
 
   execute (extraPayload: PaymentExtraPayload = {}) {
-    return Http.patch('v1/payments', {
+    let payload: PaymentExecutePayload = {
       gateway: this.gateway,
       payment_id: this.paymentId,
+    }
+
+    if (this.imsId) {
+      payload.ims_id = this.imsId
+    }
+
+    return Http.patch('v1/payments', {
+      ...payload,
       ...extraPayload
     }).then(this.onSuccess)
     .catch(this.onFailure)

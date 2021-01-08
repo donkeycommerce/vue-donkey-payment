@@ -13,7 +13,8 @@ declare class Payment {
     onSuccess: CallbackAxiosResponse;
     onFailure: CallbackError;
     paymentId: string;
-    constructor(purchasable: Purchasable, onSuccess: CallbackAxiosResponse, onFailure: CallbackError, gateway?: PaymentGateway);
+    imsId: string | null;
+    constructor(purchasable: Purchasable, onSuccess: CallbackAxiosResponse, onFailure: CallbackError, imsId?: string | null, gateway?: PaymentGateway);
     prepare(): AxiosPromise<PaymentPrepareResponse>;
     execute(extraPayload?: PaymentExtraPayload): Promise<void>;
     setPurchasable(purchasable: Purchasable): void;

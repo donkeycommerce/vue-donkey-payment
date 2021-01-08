@@ -9,6 +9,8 @@ import PayPal from '../classes/Gateways/PayPal'
 export default {
   name: 'DonkeyPayment',
   mounted() {
+    const imsId = this.imsId || null
+
     const payment = new Payment({
       type: this.serviceType,
       id: this.serviceId
@@ -16,7 +18,7 @@ export default {
       this.$emit('success', res)
     }, (err) => {
       this.$emit('error', err)
-    })
+    }, this.imsId)
 
     const paypal = new PayPal(payment)
 
@@ -27,7 +29,8 @@ export default {
   props: {
     paypalMode: String,
     serviceType: String,
-    serviceId: String|Number
+    serviceId: String|Number,
+    imsId: String
   }
 }
 </script>
